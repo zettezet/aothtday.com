@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2k10 vượt thời gian đập tan thách thức</title>
+    <style>
+        body {
+            background: url('assets/images/th.jpg') center center/cover no-repeat fixed;
+            min-height: 100vh;
+        }
+        /* Để nội dung nổi bật trên nền */
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255,255,255,0.25);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .center-text {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4b6cb7;
+            margin-bottom: 30px;
+            text-shadow: 1px 2px 8px #fff, 0 2px 8px #b6b6e6;
+            letter-spacing: 1.5px;
+        }
+        .text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff0000;
+            margin-bottom: 30px;
+            text-shadow: 1px 2px 8px #fff, 0 2px 8px #b6b6e6;
+            letter-spacing: 1.5px;
+        }
+        .text1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff7b;
+            margin-bottom: 30px;
+            text-shadow: 1px 2px 8px #fff, 0 2px 8px #b6b6e6;
+            letter-spacing: 1.5px;
+        }
+        .text input[type="text"] {
+            margin-top: 10px;
+        }
+        .ok-btn {
+            margin-top: 10px;
+            background: linear-gradient(90deg, #4b6cb7, #ffb347, #ffcc33);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            padding: 12px 36px;
+            border-radius: 30px;
+            box-shadow: 0 4px 16px #4b6cb755;
+            cursor: pointer;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            transition: background 0.4s, transform 0.2s, box-shadow 0.3s;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .ok-btn:hover {
+            background: linear-gradient(90deg, #ffb347, #4b6cb7, #ffcc33);
+            transform: scale(1.07);
+            box-shadow: 0 6px 24px #ffb34788;
+        }
+        .ok-btn:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+    <div class="center-text">
+        Á hí hí hú hú hé hé!
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center; margin: 40px 0;">
+        <video autoplay muted loop style="max-width: 90vw; width: 300px; border-radius: 16px; box-shadow: 0 4px 24px #888;">
+            <source src="/assets/videos/nhay1.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ video này.
+        </video>
+    </div>
+    <div class="text">
+        <p>Ai là người cute nhất trong box:<br>2k10 vượt thời gian đập tan thách thức</p>
+    </div>
+    <div class="text1">
+        <label for="history-content" style="margin-top:10px;display:block;">Nhập câu trả lời:</label>
+        <input type="text" id="history-content" name="history-content" style="width: 300px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" oninput="toggleOkBtn()">
+        <button type="button" class="ok-btn" id="ok-btn" onclick="showPopupVideo()" disabled>Ok</button>
+        <div id="warning-msg" style="color:red; font-size:1.1rem; margin-top:10px; display:none;"></div>
+    </div>
+    <div id="video-popup" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
+        <video id="popup-video" autoplay loop style="width:60vw; max-width:600px; border-radius:18px; box-shadow:0 8px 32px #000a;">
+            <source src="/assets/videos/liem.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ video này.
+        </video>
+        <button onclick="closePopupVideo()" style="position:absolute;top:30px;right:40px;font-size:2rem;background:none;border:none;color:#fff;cursor:pointer;">&times;</button>
+    </div>
+    <script>
+        let okClickCount = 0;
+        const maxOkClick = 3;
+
+        function showPopupVideo() {
+            var popup = document.getElementById('video-popup');
+            var video = document.getElementById('popup-video');
+            okClickCount++;
+
+            // Đổi video nguồn dựa vào số lần nhấn
+            if (okClickCount === 1) {
+                video.src = "/assets/videos/liem.mp4";
+            } else if (okClickCount === 2) {
+                video.src = "/assets/videos/liem1.mp4";
+            } else if (okClickCount === 3) {
+                video.src = "/assets/videos/meme.mp4";
+            }
+
+            popup.style.display = 'flex';
+            video.currentTime = 0;
+            video.muted = false;
+            video.volume = 1;
+            video.play();
+
+            // Nếu quá 3 lần thì ẩn nút Ok và hiện cảnh báo
+            if (okClickCount >= maxOkClick) {
+                document.getElementById('ok-btn').style.display = 'none';
+                document.getElementById('warning-msg').style.display = 'block';
+                document.getElementById('warning-msg').textContent = "Bạn đã vượt quá số lần cho phép!";
+            }
+        }
+        function closePopupVideo() {
+            var popup = document.getElementById('video-popup');
+            var video = document.getElementById('popup-video');
+            popup.style.display = 'none';
+            video.pause();
+        }
+        function toggleOkBtn() {
+            var input = document.getElementById('history-content');
+            var btn = document.getElementById('ok-btn');
+            // Chỉ bật nút nếu chưa quá 3 lần và có nội dung
+            btn.disabled = input.value.trim() === "" || okClickCount >= maxOkClick;
+        }
+    </script>
+</body>
+</html>
